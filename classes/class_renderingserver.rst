@@ -5836,15 +5836,15 @@ The normalization factor can be calculated from exposure value (EV100) as follow
 
 ::
 
-    func get_exposure_normalization(float ev100):
-        			    return 1.0 / (pow(2.0, ev100) * 1.2)
+    func get_exposure_normalization(ev100: float):
+        return 1.0 / (pow(2.0, ev100) * 1.2)
 
 The exposure value can be calculated from aperture (in f-stops), shutter speed (in seconds), and sensitivity (in ISO) as follows:
 
 ::
 
-    func get_exposure(float aperture, float shutter_speed, float sensitivity):
-        return log2((aperture * aperture) / shutterSpeed * (100.0 / sensitivity))
+    func get_exposure(aperture: float, shutter_speed: float, sensitivity: float):
+        return log((aperture * aperture) / shutter_speed * (100.0 / sensitivity)) / log(2)
 
 .. rst-class:: classref-item-separator
 
@@ -8492,7 +8492,7 @@ Sets the override material of a specific surface. Equivalent to :ref:`MeshInstan
 
 |void| **instance_set_transform**\ (\ instance\: :ref:`RID<class_RID>`, transform\: :ref:`Transform3D<class_Transform3D>`\ )
 
-Sets the world space transform of the instance. Equivalent to :ref:`Node3D.transform<class_Node3D_property_transform>`.
+Sets the world space transform of the instance. Equivalent to :ref:`Node3D.global_transform<class_Node3D_property_global_transform>`.
 
 .. rst-class:: classref-item-separator
 
@@ -9518,7 +9518,7 @@ Set the entire data to use for drawing the ``multimesh`` at once to ``buffer`` (
 
 The per-instance data size and expected data order is:
 
-::
+.. code:: text
 
     2D:
       - Position: 8 floats (8 floats for Transform2D)

@@ -12,6 +12,8 @@ VisualShaderNodeFrame
 
 **Inherits:** :ref:`VisualShaderNodeResizableBase<class_VisualShaderNodeResizableBase>` **<** :ref:`VisualShaderNode<class_VisualShaderNode>` **<** :ref:`Resource<class_Resource>` **<** :ref:`RefCounted<class_RefCounted>` **<** :ref:`Object<class_Object>`
 
+**Inherited By:** :ref:`VisualShaderNodeComment<class_VisualShaderNodeComment>`
+
 A frame other visual shader nodes can be attached to for better organization.
 
 .. rst-class:: classref-introduction-group
@@ -80,6 +82,8 @@ Property Descriptions
 - :ref:`PackedInt32Array<class_PackedInt32Array>` **get_attached_nodes**\ (\ )
 
 The list of nodes attached to the frame.
+
+**Note:** The returned array is *copied* and any changes to it will not update the original property value. See :ref:`PackedInt32Array<class_PackedInt32Array>` for more details.
 
 .. rst-class:: classref-item-separator
 
