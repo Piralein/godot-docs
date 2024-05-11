@@ -43,13 +43,6 @@ SkeletonIK3D is used to rotate all bones of a :ref:`Skeleton3D<class_Skeleton3D>
     # Apply zero IK effect (a value at or below 0.01 also removes bones_global_pose_override on Skeleton)
     skeleton_ik_node.set_influence(0.0)
 
-.. rst-class:: classref-introduction-group
-
-Tutorials
----------
-
-- `3D Inverse Kinematics Demo <https://godotengine.org/asset-library/asset/523>`__
-
 .. rst-class:: classref-reftable-group
 
 Properties
@@ -58,6 +51,8 @@ Properties
 .. table::
    :widths: auto
 
+   +---------------------------------------+---------------------------------------------------------------------------+-----------------------------------------------------+
+   | :ref:`float<class_float>`             | :ref:`interpolation<class_SkeletonIK3D_property_interpolation>`           |                                                     |
    +---------------------------------------+---------------------------------------------------------------------------+-----------------------------------------------------+
    | :ref:`Vector3<class_Vector3>`         | :ref:`magnet<class_SkeletonIK3D_property_magnet>`                         | ``Vector3(0, 0, 0)``                                |
    +---------------------------------------+---------------------------------------------------------------------------+-----------------------------------------------------+
@@ -104,6 +99,25 @@ Methods
 
 Property Descriptions
 ---------------------
+
+.. _class_SkeletonIK3D_property_interpolation:
+
+.. rst-class:: classref-property
+
+:ref:`float<class_float>` **interpolation**
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_interpolation**\ (\ value\: :ref:`float<class_float>`\ )
+- :ref:`float<class_float>` **get_interpolation**\ (\ )
+
+**Deprecated:** Use :ref:`SkeletonModifier3D.influence<class_SkeletonModifier3D_property_influence>` instead.
+
+Interpolation value for how much the IK results are applied to the current skeleton bone chain. A value of ``1.0`` will overwrite all skeleton bone transforms completely while a value of ``0.0`` will visually disable the SkeletonIK.
+
+.. rst-class:: classref-item-separator
+
+----
 
 .. _class_SkeletonIK3D_property_magnet:
 

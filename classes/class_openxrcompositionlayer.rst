@@ -10,6 +10,8 @@
 OpenXRCompositionLayer
 ======================
 
+**Experimental:** This class may be changed or removed in future versions.
+
 **Inherits:** :ref:`Node3D<class_Node3D>` **<** :ref:`Node<class_Node>` **<** :ref:`Object<class_Object>`
 
 **Inherited By:** :ref:`OpenXRCompositionLayerCylinder<class_OpenXRCompositionLayerCylinder>`, :ref:`OpenXRCompositionLayerEquirect<class_OpenXRCompositionLayerEquirect>`, :ref:`OpenXRCompositionLayerQuad<class_OpenXRCompositionLayerQuad>`
@@ -33,13 +35,15 @@ Properties
 .. table::
    :widths: auto
 
-   +---------------------------------------+-----------------------------------------------------------------------------+-----------+
-   | :ref:`bool<class_bool>`               | :ref:`alpha_blend<class_OpenXRCompositionLayer_property_alpha_blend>`       | ``false`` |
-   +---------------------------------------+-----------------------------------------------------------------------------+-----------+
-   | :ref:`SubViewport<class_SubViewport>` | :ref:`layer_viewport<class_OpenXRCompositionLayer_property_layer_viewport>` |           |
-   +---------------------------------------+-----------------------------------------------------------------------------+-----------+
-   | :ref:`int<class_int>`                 | :ref:`sort_order<class_OpenXRCompositionLayer_property_sort_order>`         | ``1``     |
-   +---------------------------------------+-----------------------------------------------------------------------------+-----------+
+   +---------------------------------------+-----------------------------------------------------------------------------------+-----------+
+   | :ref:`bool<class_bool>`               | :ref:`alpha_blend<class_OpenXRCompositionLayer_property_alpha_blend>`             | ``false`` |
+   +---------------------------------------+-----------------------------------------------------------------------------------+-----------+
+   | :ref:`bool<class_bool>`               | :ref:`enable_hole_punch<class_OpenXRCompositionLayer_property_enable_hole_punch>` | ``false`` |
+   +---------------------------------------+-----------------------------------------------------------------------------------+-----------+
+   | :ref:`SubViewport<class_SubViewport>` | :ref:`layer_viewport<class_OpenXRCompositionLayer_property_layer_viewport>`       |           |
+   +---------------------------------------+-----------------------------------------------------------------------------------+-----------+
+   | :ref:`int<class_int>`                 | :ref:`sort_order<class_OpenXRCompositionLayer_property_sort_order>`               | ``1``     |
+   +---------------------------------------+-----------------------------------------------------------------------------------+-----------+
 
 .. rst-class:: classref-reftable-group
 
@@ -49,9 +53,11 @@ Methods
 .. table::
    :widths: auto
 
-   +-------------------------+-------------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>` | :ref:`is_natively_supported<class_OpenXRCompositionLayer_method_is_natively_supported>`\ (\ ) |const| |
-   +-------------------------+-------------------------------------------------------------------------------------------------------+
+   +-------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Vector2<class_Vector2>` | :ref:`intersects_ray<class_OpenXRCompositionLayer_method_intersects_ray>`\ (\ origin\: :ref:`Vector3<class_Vector3>`, direction\: :ref:`Vector3<class_Vector3>`\ ) |const| |
+   +-------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`       | :ref:`is_natively_supported<class_OpenXRCompositionLayer_method_is_natively_supported>`\ (\ ) |const|                                                                      |
+   +-------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. rst-class:: classref-section-separator
 
@@ -76,6 +82,25 @@ Property Descriptions
 Enables the blending the layer using its alpha channel.
 
 Can be combined with :ref:`Viewport.transparent_bg<class_Viewport_property_transparent_bg>` to give the layer a transparent background.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_OpenXRCompositionLayer_property_enable_hole_punch:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **enable_hole_punch** = ``false``
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_enable_hole_punch**\ (\ value\: :ref:`bool<class_bool>`\ )
+- :ref:`bool<class_bool>` **get_enable_hole_punch**\ (\ )
+
+Enables a technique called "hole punching", which allows putting the composition layer behind the main projection layer (i.e. setting :ref:`sort_order<class_OpenXRCompositionLayer_property_sort_order>` to a negative value) while "punching a hole" through everything rendered by Godot so that the layer is still visible.
+
+This can be used to create the illusion that the composition layer exists in the same 3D space as everything rendered by Godot, allowing objects to appear to pass both behind or in front of the composition layer.
 
 .. rst-class:: classref-item-separator
 
@@ -121,6 +146,20 @@ The sort order for this composition layer. Higher numbers will be shown in front
 
 Method Descriptions
 -------------------
+
+.. _class_OpenXRCompositionLayer_method_intersects_ray:
+
+.. rst-class:: classref-method
+
+:ref:`Vector2<class_Vector2>` **intersects_ray**\ (\ origin\: :ref:`Vector3<class_Vector3>`, direction\: :ref:`Vector3<class_Vector3>`\ ) |const|
+
+Returns UV coordinates where the given ray intersects with the composition layer. ``origin`` and ``direction`` must be in global space.
+
+Returns ``Vector2(-1.0, -1.0)`` if the ray doesn't intersect.
+
+.. rst-class:: classref-item-separator
+
+----
 
 .. _class_OpenXRCompositionLayer_method_is_natively_supported:
 
